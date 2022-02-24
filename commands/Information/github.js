@@ -44,7 +44,7 @@ module.exports = {
                         fields: [
                             { name: "Obserwujacy: ", value: data.followers, inline: true },
                             { name: "Publiczne Reprozytoria: ", value: data.public_repos, inline: true },
-                            { name: "Konto utworzono: ", value: `${new Date(data.created_at)}` }
+                            { name: "Konto utworzone: ", value: `${new Date(data.created_at)}` }
                         ]
                     }
                 });
