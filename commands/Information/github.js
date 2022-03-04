@@ -4,7 +4,7 @@ const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const RedditImageFetcher = require("reddit-image-fetcher");
 const fs = require('fs')
-const axios = require('axios')
+
 module.exports = {
     name: "github",
     category: "Information",
