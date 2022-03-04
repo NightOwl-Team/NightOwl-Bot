@@ -58,7 +58,7 @@ module.exports = {
                         await msg.react("✅");
                         await msg.react("❌");
                         const filter = (reaction, user) => reaction.emoji.name === "✅" && user.id === user.id;
-                        const collector = msg.createReactionCollector(filter, { time: 6000 });
+                        const collector = msg.createReactionCollector(filter, { time: 60000 });
                         collector.on("collect", async r => {
                             if (r.emoji.name === "✅") {
                                 let i = 0;
