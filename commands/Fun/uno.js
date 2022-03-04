@@ -67,7 +67,7 @@ module.exports = {
                                     .setColor(ee.color)
                                     .setFooter(ee.footertext, ee.footericon)
                                     .setTitle(`✅ Wyzwanie zostalo zaakceptowane`)
-                                    .setDescription(`Trwa przygotowywanie gry {$i}`)
+                                    .setDescription(`Trwa przygotowywanie gry ${i}`)
                                 ).then(async msg => {
 
                                     //edit message every second adding a percentege
