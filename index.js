@@ -11,8 +11,7 @@ const client = new Discord.Client({
   restTimeOffset: 0,
   restWsBridgetimeout: 100,
   disableEveryone: true,
-  partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
-  intents: [Intents.FLAGS.GUILDS]
+  partials: ['MESSAGE', 'CHANNEL', 'REACTION']
 });
 
 //Client variables to use everywhere
