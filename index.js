@@ -1,5 +1,5 @@
 ﻿//Importing all needed Commands
-const Discord = require("discord.js"); //this is the official discord.js wrapper for the Discord Api, which we use!
+const { Discord, Intents } = require("discord.js"); //this is the official discord.js wrapper for the Discord Api, which we use!
 const colors = require("colors"); //this Package is used, to change the colors of our Console! (optional and doesnt effect performance)
 const fs = require("fs"); //this package is for reading files and getting their inputs
 
