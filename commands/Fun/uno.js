@@ -1,7 +1,7 @@
 const { MessageEmbed, GuildTemplate } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
-const fetch = require("node-fetch");
+const fetch = import("node-fetch");
 
 module.exports = {
     name: "uno",
