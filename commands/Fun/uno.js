@@ -1,6 +1,10 @@
 const { MessageEmbed, GuildTemplate } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
+const unocards = [
+
+]
+
 module.exports = {
     name: "uno",
     category: "Fun",
@@ -99,6 +103,64 @@ module.exports = {
                                                     .setDescription(`Chwileczkę...`)
                                                 ).then(async msg => {
                                                     msg.delete({ timeout: 5000 })
+                                                    //get cards for player and his opponent
+                                                    let playercards = [];
+                                                    let opponentcards = [];
+                                                    for (let i = 0; i < 5; i++) {
+                                                        //create new deck using api
+                                                        let deck = await fetch(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`).then(res => res.json());
+                                                        //get cards from deck
+                                                        let cards = await fetch(`https://deckofcardsapi.com/api/deck/${deck.deck_id}/draw/?count=2`).then(res => res.json());
+                                                        //add cards to player and opponent cards
+                                                        playercards.push(cards.cards[0]);
+                                                        opponentcards.push(cards.cards[1]);
+                                                    }
+                                                    //send cards using a message visible for only one person
+                                                    message.channel.send(new MessageEmbed()
+                                                        .setColor(ee.color)
+                                                        .setFooter(ee.footertext, ee.footericon)
+                                                        .setTitle(`Karty`)
+                                                        .setDescription(`${message.author}`)
+                                                        .addField(`Karty gracza`, `${playercards[0].image}`)
+                                                        .addField(`Karty przeciwnika`, `${opponentcards[0].image}`)
+                                                    ).then(async msg => {
+                                                        msg.delete({ timeout: 5000 })
+                                                        message.channel.send("tyle zrobilem narazie XD")
+                                                    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                                 })
 
                                             });
