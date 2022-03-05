@@ -1,7 +1,12 @@
 const { MessageEmbed, GuildTemplate } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
-const fetch = import("node-fetch");
+const yellowcards = require("../../botconfig/cards/yellow");
+const redcards = require("../../botconfig/cards/red");
+const greencards = require("../../botconfig/cards/green");
+const bluecards = require("../../botconfig/cards/blue");
+const wildcards = require("../../botconfig/cards/wild");
+
 
 module.exports = {
     name: "uno",
@@ -93,90 +98,73 @@ module.exports = {
                                                 //get cards for player and his opponent
                                                 let playercards = [];
                                                 let opponentcards = [];
-                                                for (let i = 0; i < 5; i++) {
-                                                    //create new deck using api
-                                                    let deck = await fetch(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`).then(res => res.json());
-                                                    //get cards from deck
-                                                    let cards = await fetch(`https://deckofcardsapi.com/api/deck/${deck.deck_id}/draw/?count=2`).then(res => res.json());
-                                                    //add cards to player and opponent cards
-                                                    playercards.push(cards.cards[0]);
-                                                    opponentcards.push(cards.cards[1]);
+                                                for (let i = 0; i < 7; i++) {
+                                                    //generate 7 random cards with colors
+                                                    let random = Math.floor(Math.random() * 4);
+                                                    if (random === 0) {
+                                                        playercards.push(yellowcards[Math.floor(Math.random() * yellowcards.length)]);
+                                                        opponentcards.push(redcards[Math.floor(Math.random() * redcards.length)]);
+                                                    } else if (random === 1) {
+                                                        playercards.push(bluecards[Math.floor(Math.random() * bluecards.length)]);
+                                                        opponentcards.push(greencards[Math.floor(Math.random() * greencards.length)]);
+                                                    } else if (random === 2) {
+                                                        playercards.push(redcards[Math.floor(Math.random() * redcards.length)]);
+                                                        opponentcards.push(yellowcards[Math.floor(Math.random() * yellowcards.length)]);
+                                                    } else if (random === 3) {
+                                                        playercards.push(greencards[Math.floor(Math.random() * greencards.length)]);
+                                                        opponentcards.push(bluecards[Math.floor(Math.random() * bluecards.length)]);
+                                                    } else if (random === 4) {
+                                                        playercards.push(yellowcards[Math.floor(Math.random() * yellowcards.length)]);
+                                                        opponentcards.push(redcards[Math.floor(Math.random() * redcards.length)]);
+                                                    } else if (random === 5) {
+                                                        playercards.push(bluecards[Math.floor(Math.random() * bluecards.length)]);
+                                                        opponentcards.push(greencards[Math.floor(Math.random() * greencards.length)]);
+                                                    } else if (random === 6) {
+                                                        playercards.push(wildcards[Math.floor(Math.random() * wildcards.length)]);
+                                                        opponentcards.push(bluecards[Math.floor(Math.random() * bluecards.length)]);
+                                                    } else if (random === 7) {
+                                                        playercards.push(wildcards[Math.floor(Math.random() * wildcards.length)]);
+                                                        opponentcards.push(greencards[Math.floor(Math.random() * redcards.length)]);
+                                                        //
+
+                                                    }
+                                                    //send cards using a message visible for only one person
+                                                    message.channel.send(new MessageEmbed()
+                                                        .setColor(ee.color)
+                                                        .setFooter(ee.footertext, ee.footericon)
+                                                        .setTitle(`Twoje karty`)
+                                                        .setDescription(`${playercards.join("\n")}`)
+                                                    ).then(async msg => {
+                                                        msg.delete({ timeout: 5000 })
+                                                        message.channel.send(new MessageEmbed()
+                                                            .setColor(ee.color)
+                                                            .setFooter(ee.footertext, ee.footericon)
+                                                            .setTitle(`Karty przeciwnika`)
+                                                            .setDescription(`${opponentcards.join("\n")}`)
+
+                                                        ).then(async msg => {
+                                                            msg.delete({ timeout: 5000 })
+                                                            message.channel.send("to wsyzstko XDDD")
+                                                        })
+                                                    })
                                                 }
-                                                //send cards using a message visible for only one person
-                                                message.channel.send(new MessageEmbed()
-                                                    .setColor(ee.color)
-                                                    .setFooter(ee.footertext, ee.footericon)
-                                                    .setTitle(`Karty`)
-                                                    .setDescription(`${message.author}`)
-                                                    .addField(`Karty gracza`, `${playercards[0].image}`)
-                                                    .addField(`Karty przeciwnika`, `${opponentcards[0].image}`)
-                                                ).then(async msg => {
-                                                    msg.delete({ timeout: 5000 })
-                                                    message.channel.send("tyle zrobilem narazie XD")
-                                                })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                             })
-
-                                        });
-
+                                        })
                                     }
                                 }, 1000);
-                            });
+                            })
                         }
-                    });
-                    //exit if user clicks on decline
-                    collector.on("end", collected => {
-                        if (collected.size === 0) {
-                            msg.delete();
-                            message.channel.send(new MessageEmbed()
-                                .setColor(ee.color)
-                                .setFooter(ee.footertext, ee.footericon)
-                                .setTitle(`❌ Wyzwanie zostalo odrzucone`)
-                            );
-                        }
-                    });
-                });
+                    })
+                })
             }
 
-        }
-
-        catch (err) {
+        } catch (err) {
             console.log(err);
+
         }
     }
+
+
 
 
 
