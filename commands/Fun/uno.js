@@ -27,11 +27,7 @@ module.exports = {
                 .setDescription(`Tryby:  \n\n**duel** zadaje wyzwanie do gry \n\n**accept** akceptuje wyzwanie \n\n**decline** odrzuca wyzwanie`)
             );
 
-            if (user.id === message.author.id) return message.channel.send(new MessageEmbed()
-                .setColor(ee.wrongcolor)
-                .setFooter(ee.footertext, ee.footericon)
-                .setTitle(`❌ ERROR | Nie mozesz grać ze samym sobą`)
-            );
+
             if (user.id === client.user.id) return message.channel.send(new MessageEmbed()
                 .setColor(ee.wrongcolor)
                 .setFooter(ee.footertext, ee.footericon)
