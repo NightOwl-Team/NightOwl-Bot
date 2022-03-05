@@ -54,7 +54,7 @@ module.exports = {
                     const collector = msg.createReactionCollector(filter, { time: 60000 });
                     collector.on("collect", async r => {
                         if (r.emoji.name === "✅") {
-                            let i = 0;
+                            let i = 80;
                             msg.delete();
                             message.channel.send(new MessageEmbed()
                                 .setColor(ee.color)
