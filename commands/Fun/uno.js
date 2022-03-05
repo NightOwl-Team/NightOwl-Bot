@@ -26,14 +26,7 @@ module.exports = {
                 .setTitle(`❌ ERROR | Nie podales gracza`)
                 .setDescription(`Tryby:  \n\n**duel** zadaje wyzwanie do gry \n\n**accept** akceptuje wyzwanie \n\n**decline** odrzuca wyzwanie`)
             );
-            if (args[0] === "challenge") {
-                let user = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]));
-                if (!user) return message.channel.send(new MessageEmbed()
-                    .setColor(ee.wrongcolor)
-                    .setFooter(ee.footertext, ee.footericon)
-                    .setTitle(`❌ ERROR | Nie znaleziono gracza`)
-                    .setDescription(`Tryby:  \n\n**duel** zadaje wyzwanie do gry \n\n**accept** akceptuje wyzwanie \n\n**decline** odrzuca wyzwanie`)
-                );
+            if (args[0] === "duel") {
                 if (user.id === message.author.id) return message.channel.send(new MessageEmbed()
                     .setColor(ee.wrongcolor)
                     .setFooter(ee.footertext, ee.footericon)
