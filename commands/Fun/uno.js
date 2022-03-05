@@ -18,13 +18,13 @@ module.exports = {
                 .setColor(ee.wrongcolor)
                 .setFooter(ee.footertext, ee.footericon)
                 .setTitle(`❌ ERROR | Nie podales trybu`)
-                .setDescription(`Tryby:  \n\n**challenge** zadaje wyzwanie do gry\n\n`)
+                .setDescription(`Tryby:  \n\n**duel** zadaje wyzwanie do gry\n\n`)
             );
             if (!args[1]) return message.channel.send(new MessageEmbed()
                 .setColor(ee.wrongcolor)
                 .setFooter(ee.footertext, ee.footericon)
                 .setTitle(`❌ ERROR | Nie podales gracza`)
-                .setDescription(`Tryby:  \n\n**challenge** zadaje wyzwanie do gry \n\n**accept** akceptuje wyzwanie \n\n**decline** odrzuca wyzwanie`)
+                .setDescription(`Tryby:  \n\n**duel** zadaje wyzwanie do gry \n\n**accept** akceptuje wyzwanie \n\n**decline** odrzuca wyzwanie`)
             );
             if (args[0] === "challenge") {
                 let user = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[1]));
@@ -32,7 +32,7 @@ module.exports = {
                     .setColor(ee.wrongcolor)
                     .setFooter(ee.footertext, ee.footericon)
                     .setTitle(`❌ ERROR | Nie znaleziono gracza`)
-                    .setDescription(`Tryby:  \n\n**challenge** zadaje wyzwanie do gry \n\n**accept** akceptuje wyzwanie \n\n**decline** odrzuca wyzwanie`)
+                    .setDescription(`Tryby:  \n\n**duel** zadaje wyzwanie do gry \n\n**accept** akceptuje wyzwanie \n\n**decline** odrzuca wyzwanie`)
                 );
                 if (user.id === message.author.id) return message.channel.send(new MessageEmbed()
                     .setColor(ee.wrongcolor)
@@ -51,7 +51,7 @@ module.exports = {
                     .setTitle(`❌ ERROR | Ten gracz nie jest na tym serwerze`)
                 );
                 //ask user if he wants to challenge
-                if (args[0] === "challenge") {
+                if (args[0] === "duel") {
                     message.channel.send(new MessageEmbed()
                         .setColor(ee.color)
                         .setFooter(ee.footertext, ee.footericon)
