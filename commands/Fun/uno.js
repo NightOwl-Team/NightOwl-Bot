@@ -1,12 +1,12 @@
 const { MessageEmbed, GuildTemplate } = require("discord.js");
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
-const yellowcards = require("../../botconfig/cards/yellow");
+
 const redcards = require("../../botconfig/cards/red");
 const greencards = require("../../botconfig/cards/green");
 const bluecards = require("../../botconfig/cards/blue");
 const wildcards = require("../../botconfig/cards/wild");
-
+const yellowcards = require("../../botconfig/cards/yellow");
 
 module.exports = {
     name: "uno",
