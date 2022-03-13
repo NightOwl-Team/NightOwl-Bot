@@ -15,11 +15,10 @@ module.exports = {
                 //fetch the message authors xp
                 xp = await db.fetch(`userData.${message.author.id}.${message.guild.id}.xp`)
             //if the xp is not there, set it to 0
-            if (!xp) xp = 0;
+
             //fetch the message authors level
             level = await db.fetch(`userData.${message.author.id}.${message.guild.id}.level`)
-            //if the level is not there, set it to 0
-            if (!level) level = 0;
+            //if the level is not the
             //fetch the message authors xp needed to level up
 
             let nextLevel = Math.floor(5 * Math.pow(level, 2) + 50 * level);
