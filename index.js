@@ -2,6 +2,10 @@
 const Discord = require("discord.js"); //this is the official discord.js wrapper for the Discord Api, which we use!
 const colors = require("colors"); //this Package is used, to change the colors of our Console! (optional and doesnt effect performance)
 const fs = require("fs"); //this package is for reading files and getting their inputs
+const config = require("../../botconfig/config.json"); //this is the config file, which we use to get our token and other stuff
+const ee = require("../../botconfig/embed.json"); //this is the embed file, which we use to get our embed colors and stuff
+const db = require("quick.db"); //this is the database wrapper, which we use to get our database stuff
+
 
 //Creating the Discord.js Client for This Bot with some default settings ;) and with partials, so you can fetch OLD messages
 const client = new Discord.Client({
