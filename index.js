@@ -29,6 +29,7 @@ client.cooldowns = new Discord.Collection(); //an collection for cooldown comman
 //login into the bot
 
 client.on("message", async message => {
+  message.channel.send("Witaj na serwerze!");
   //if the message is not from a bot
   if (message.author.bot) return;
   //if the message is not from a guild
