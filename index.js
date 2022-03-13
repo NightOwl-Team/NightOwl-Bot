@@ -29,13 +29,13 @@ client.cooldowns = new Discord.Collection(); //an collection for cooldown comman
 //login into the bot
 
 client.on("message", async message => {
-  message.channel.send("Witaj na serwerze!");
+
   //if the message is not from a bot
   if (message.author.bot) return;
-  //if the message is not from a guild
+
+  //if the message is not in a guild (aka in dms), return aka ignore the inputs
   if (!message.guild) return;
-  //if the message is not from a user
-  if (!message.member) return;
+
   //check if the user is in the database
   if (!db.has(`userData.${message.author.id}.${message.guild.id}.xp`)) {
     db.set(`userData.${message.author.id}.${message.guild.id}.xp`, 0);
