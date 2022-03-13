@@ -33,7 +33,7 @@ module.exports = {
             ).then(msg => msg.delete({ timeout: 5000 }).catch(e => console.log("Couldn't Delete --> Ignore".gray)));
         } catch (e) {
             return message.channel.send(
-                new MessageEmbed()
+                new Discord.MessageEmbed()
                     .setColor("RED")
                     .setTitle(`❌ ERROR | Wystapil blad`)
                     .setDescription(`\`\`\`${e.stack}\`\`\``)
