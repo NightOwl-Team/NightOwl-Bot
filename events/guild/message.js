@@ -161,7 +161,7 @@ module.exports = async (client, message) => {
       db.set(`userData.${message.author.id}.${message.guild.id}.xp`, xp - nextLevel);
       //send a message to the user
       message.channel.send(new Discord.MessageEmbed()
-        .setColor(ee.rightcolor)
+        .setColor(ee.color)
         .setFooter(ee.footertext, ee.footericon)
         .setTitle(`✅ | Gratulacje!`)
         .setDescription(`**${message.author.username}** otrzymuje **${level}** poziom!`)

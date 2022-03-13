@@ -1,6 +1,7 @@
 const config = require("../../botconfig/config.json");
 const ee = require("../../botconfig/embed.json");
 const db = require("quick.db")
+const Discord = require("discord.js");
 module.exports = {
     name: "rank",
     category: "Levels",
