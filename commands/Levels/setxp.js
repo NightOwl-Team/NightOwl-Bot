@@ -32,18 +32,11 @@ module.exports = {
             let nextLevel = Math.floor(5 * Math.pow(level, 2) + 69 * level);
             //add xp to the user
             //check if the xp is higher than the next level
-            if (xp + args[1] > nextLevel) {
-                message.channel.send(new Discord.MessageEmbed()
-                    //say that we cant add xp to the user
-                    .setDescription(`${user} nie może dodać więcej expa! maxymalna ilość expa to ${nextLevel}`)
-                    //set the color of the embed
-                    .setColor(ee.error)
-                );
-                return;
-            }
-            //add xp to the user
 
-            xp = xp + parseInt(args[1]);
+
+            //ad xp to the user
+
+
             db.set(`userData.${user.id}.${message.guild.id}.xp`, args[1]);
             //send a message to the channel
             message.channel.send(new Discord.MessageEmbed()
