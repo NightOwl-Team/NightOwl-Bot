@@ -10,4 +10,4 @@ module.exports = {
     usage: "rank [user]",
     description: "Pokazuje ile masz expa / dany uzytkownik",
     run: async (client, message, args, user, text, prefix) => {
-        try {
+        try {}
