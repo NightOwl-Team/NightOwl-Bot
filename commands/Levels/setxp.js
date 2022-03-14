@@ -3,11 +3,11 @@ const ee = require("../../botconfig/embed.json");
 const db = require("quick.db")
 const Discord = require("discord.js");
 module.exports = {
-    name: "add-xp",
+    name: "set-xp",
     category: "Levels",
-    aliases: ["xpadd, dodajxp"],
+    aliases: ["ustawxp, setexpierience"],
     cooldown: 2,
-    usage: "dodajxp [user] [ile xp]",
+    usage: "ustawxp [user] [ile xp]",
     description: "Dodaje expa do użytkownika",
     run: async (client, message, args, user, text, prefix) => {
         try {
@@ -35,7 +35,7 @@ module.exports = {
             message.channel.send(new Discord.MessageEmbed()
                 .setColor(ee.color)
                 .setAuthor(`${message.guild.name}`, message.guild.iconURL())
-                .setDescription(`${user} otrzymał ${args[1]} expa!`)
+                .setDescription(`${user} ma teraz ${args[1]} expa!`)
                 .setTimestamp()
                 .setFooter(`${message.guild.name}`, message.guild.iconURL()));
 
