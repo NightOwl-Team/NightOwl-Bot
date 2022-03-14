@@ -16,6 +16,50 @@ module.exports = async (client, message) => {
     if (message.channel.partial) await message.channel.fetch();
     //if the message is on partial fetch it
     if (message.partial) await message.fetch();
+
+    //if the message is not from a bot
+    if (message.author.bot) return;
+
+    //if the message is not in a guild (aka in dms), return aka ignore the inputs
+    if (!message.guild) return;
+    //if message is shorter thaan 4 dont give xp
+    if (message.content.length < 4) return;
+
+    //check if the user is in the database
+    if (!db.has(`userData.${message.author.id}.${message.guild.id}.xp`)) {
+      db.set(`userData.${message.author.id}.${message.guild.id}.xp`, 0);
+      db.set(`userData.${message.author.id}.${message.guild.id}.level`, 1);
+    }
+    //get the xp of the user
+    let xp = db.get(`userData.${message.author.id}.${message.guild.id}.xp`);
+    //get the level of the user
+    let level = db.get(`userData.${message.author.id}.${message.guild.id}.level`);
+    //get the amount of xp needed to get to the next level
+    let nextLevel = Math.floor(5 * Math.pow(level, 2) + 69 * level);
+    //add random xp to the user (between 1 and 4)
+    xp = xp + Math.floor(Math.random() * (4 - 1 + 1)) + 1;
+
+    //add the random xp to the user 
+
+    db.set(`userData.${message.author.id}.${message.guild.id}.xp`, xp);
+    //if the user has enough xp to get to the next level
+    if (xp >= nextLevel) {
+
+      //add 1 to the level
+      level = level + 1;
+      //set the new level
+      db.set(`userData.${message.author.id}.${message.guild.id}.level`, level);
+      //set the new xp
+      db.set(`userData.${message.author.id}.${message.guild.id}.xp`, xp - nextLevel);
+      //send a message to the user
+      message.channel.send(new Discord.MessageEmbed()
+        .setColor(ee.color)
+        .setFooter(ee.footertext, ee.footericon)
+        .setTitle(`✅ | Gratulacje!`)
+        .setDescription(`**${message.author.username}** otrzymuje **${level}** poziom!`)
+      ).then(msg => msg.delete({ timeout: 5000 }).catch(e => console.log("Couldn't Delete --> Ignore".gray)));
+    }
+
     //get the current prefix from the botconfig/config.json
     let prefix;
     let prefixes = db.fetch("prefix_", message.guild.id);
@@ -117,7 +161,7 @@ module.exports = async (client, message) => {
       ).then(msg => msg.delete({ timeout: 5000 }).catch(e => console.log("Couldn't Delete --> Ignore".gray)));
   } catch (e) {
     return message.channel.send(
-      new MessageEmbed()
+      new Discord.MessageEmbed()
         .setColor("RED")
         .setTitle(`❌ ERROR | Wystapil blad`)
         .setDescription(`\`\`\`${e.stack}\`\`\``)

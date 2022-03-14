@@ -13,7 +13,7 @@ const client = new Discord.Client({
   restTimeOffset: 0,
   restWsBridgetimeout: 100,
   disableEveryone: true,
-  partials: ['MESSAGE', 'CHANNEL', 'REACTION']
+  partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
 });
 
 //Client variables to use everywhere
@@ -28,50 +28,6 @@ client.cooldowns = new Discord.Collection(); //an collection for cooldown comman
 });
 //login into the bot
 
-client.on("message", async message => {
-
-  //if the message is not from a bot
-  if (message.author.bot) return;
-
-  //if the message is not in a guild (aka in dms), return aka ignore the inputs
-  if (!message.guild) return;
-
-  //check if the user is in the database
-  if (!db.has(`userData.${message.author.id}.${message.guild.id}.xp`)) {
-    db.set(`userData.${message.author.id}.${message.guild.id}.xp`, 0);
-    db.set(`userData.${message.author.id}.${message.guild.id}.level`, 1);
-  }
-  //get the xp of the user
-  let xp = db.get(`userData.${message.author.id}.${message.guild.id}.xp`);
-  //get the level of the user
-  let level = db.get(`userData.${message.author.id}.${message.guild.id}.level`);
-  //get the amount of xp needed to get to the next level
-  let nextLevel = Math.floor(5 * Math.pow(level, 2) + 50 * level);
-  //add random xp to the user (between 1 and 13)
-  let randomXp = Math.floor(Math.random() * 13) + 1;
-  //add the random xp to the user 
-  xp = xp + randomXp;
-  //if the user has enough xp to get to the next level
-  if (xp >= nextLevel) {
-
-    //add 1 to the level
-    level = level + 1;
-    //set the new level
-    db.set(`userData.${message.author.id}.${message.guild.id}.level`, level);
-    //set the new xp
-    db.set(`userData.${message.author.id}.${message.guild.id}.xp`, xp - nextLevel);
-    //send a message to the user
-    message.channel.send(new Discord.MessageEmbed()
-      .setColor(ee.color)
-      .setFooter(ee.footertext, ee.footericon)
-      .setTitle(`✅ | Gratulacje!`)
-      .setDescription(`**${message.author.username}** otrzymuje **${level}** poziom!`)
-    ).then(msg => msg.delete({ timeout: 5000 }).catch(e => console.log("Couldn't Delete --> Ignore".gray)));
-  }
-
-
-
-});
 
 
 
