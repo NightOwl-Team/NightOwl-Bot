@@ -31,13 +31,18 @@ module.exports = {
                     .setTitle(`❌ ERROR | Nie mozesz wyczyscic wiecej niz 100 wiadomosci`)
                     .setDescription(`Usage: \`${prefix}${this.usage}\``)
                 );
-            message.channel.bulkDelete(args[0]);
-            message.channel.send(new MessageEmbed()
-                .setColor(ee.color)
-                .setFooter(ee.footertext, ee.footericon)
-                .setTitle(`✅ CLEAR | Wszystkie wiadomosci zostaly usuniete`)
-                .setDescription(`Usunieto: ${args[0]} wiadomosci`)
-            )
+            try {
+                message.channel.bulkDelete(args[0]);
+                message.channel.send(new MessageEmbed()
+                    .setColor(ee.color)
+                    .setFooter(ee.footertext, ee.footericon)
+                    .setTitle(`✅ CLEAR | Wszystkie wiadomosci zostaly usuniete`)
+                    .setDescription(`Usunieto: ${args[0]} wiadomosci`)
+                )
+            } catch (err) {
+                console.log(err)
+            }
+
 
 
 
