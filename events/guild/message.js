@@ -60,6 +60,21 @@ module.exports = async (client, message) => {
       ).then(msg => msg.delete({ timeout: 5000 }).catch(e => console.log("Couldn't Delete --> Ignore".gray)));
     }
 
+
+    // anty invite 
+    if (message.content.includes("discord.gg")) {
+      message.delete();
+      message.channel.send(new Discord.MessageEmbed()
+        .setColor(ee.color)
+        .setFooter(ee.footertext, ee.footericon)
+        .setTitle(`🚫 | Zabronione!`)
+        .setDescription(`**${message.author.username}** próbuje wysłać link do serwera!`)
+        .setFooter(`Zablokowane Przez NightOwl | ${message.author.username}`, message.author.displayAvatarURL())
+      ).then(msg => msg.delete({ timeout: 5000 }).catch(e => console.log("Couldn't Delete --> Ignore".gray)));
+    }
+
+
+
     //get the current prefix from the botconfig/config.json
     let prefix;
     let prefixes = db.fetch("prefix_", message.guild.id);
