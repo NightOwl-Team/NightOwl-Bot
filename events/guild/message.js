@@ -69,7 +69,7 @@ module.exports = async (client, message) => {
         .setFooter(ee.footertext, ee.footericon)
         .setTitle(`🚫 | Zabronione!`)
         .setDescription(`**${message.author.username}** próbuje wysłać link do serwera!`)
-        .setFooter(`Zablokowane Przez NightOwl | ${message.author.username}`, message.author.displayAvatarURL())
+        .setFooter(`Zablokowane Przez NightOwl |`, client.avatarURL())
       ).then(msg => msg.delete({ timeout: 5000 }).catch(e => console.log("Couldn't Delete --> Ignore".gray)));
     }
 
