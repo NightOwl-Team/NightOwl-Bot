@@ -27,6 +27,24 @@ client.cooldowns = new Discord.Collection(); //an collection for cooldown comman
   require(`./handlers/${handler}`)(client);
 });
 //login into the bot
+client.on("message edit", async (oldMessage, newMessage) => {
+  //create antyinvite system
+  if (newMessage.content.includes("discord.gg")) {
+    if (newMessage.member.hasPermission("MANAGE_MESSAGES")) return;
+    if (newMessage.author.bot) return;
+    if (newMessage.channel.type === "dm") return;
+    if (newMessage.content.includes("discord.gg")) {
+      newMessage.delete();
+      newMessage.channel.send(new Discord.MessageEmbed()
+        .setColor(ee.color)
+        .setFooter(ee.footertext, ee.footericon)
+        .setTitle(`🚫 | Zabronione!`)
+        .setDescription(`**${newMessage.author.username}**, nie możesz reklamować innych serwerów!`)
+      );
+    }
+  }
+});
+
 
 
 
