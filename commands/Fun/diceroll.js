@@ -18,7 +18,7 @@ module.exports = {
                 .setFooter(ee.footertext, ee.footericon)
                 .setTitle(`🎲 Kostka`)
                 .setDescription(`Wylosowałeś: ${dice}`)
-                .setImage(`http://roll.diceapi.com/d${dice}`)
+                .setThumbnail(`http://roll.diceapi.com/images/poorly-drawn/d6/${dice}.png`)
                 .setTimestamp()
             message.channel.send(embed);
         } catch (err) {
