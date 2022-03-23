@@ -13,6 +13,7 @@
     "@discordjs/opus": "^0.5.3",
     "ascii-table": "0.0.9",
     "avconv": "^3.1.0",
+    "canvas": "^2.9.1",
     "discord.js": "^12.5.3",
     "discord.js-collector": "^1.8.9",
     "dispatcher": "^0.0.2",
