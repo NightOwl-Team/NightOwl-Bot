@@ -24,11 +24,8 @@ module.exports = {
                     .setTitle(`❌ ERROR | Nie podales usera`)
 
                 );
-            let userargs = args.join(" ").split(" ");
-            //check if user is the mentioned user
-            let user1 = message.mentions.members.first();
-            //get his id 
-            let user = user1.id;
+            let user = args.join(" ").split(" ");
+
 
 
 
