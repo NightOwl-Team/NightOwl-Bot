@@ -24,7 +24,7 @@ module.exports = {
                     .setTitle(`❌ ERROR | Nie podales usera`)
 
                 );
-            let user = args.join(" ").split(" ");
+            let user = await client.users.fetch(args.slice(0).join(" "));
 
 
 
