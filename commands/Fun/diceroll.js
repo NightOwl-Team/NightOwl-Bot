@@ -29,7 +29,7 @@ module.exports = {
                 .setTitle(`🎲 Kostka`)
                 .setDescription(`Losuje...`)
                 .setTimestamp()
-                .setImage(`https://th.bing.com/th/id/R.c8189a0f2f9f0e4b91ad323d31e0a6c1?rik=Nx5Sq0Ym8SpNAA&pid=ImgRaw&r=0`)
+                .setImage(message.author.displayAvatarURL())
             )
                 .then(msg => {
                     //wait 2 sec
