@@ -25,15 +25,12 @@ module.exports = {
 
                 );
             let userargs = args.join(" ").split(" ");
-            let user = message.mentions.members.first();
+            //check if user is the mentioned user
+            let user1 = message.mentions.members.first();
+            //get his id 
+            let user = user1.id;
 
-            if (!user)
-                return message.channel.send(new MessageEmbed()
-                    .setColor(ee.wrongcolor)
-                    .setFooter(ee.footertext, ee.footericon)
-                    .setTitle(`❌ ERROR | Nie podales usera`)
 
-                );
 
 
 
